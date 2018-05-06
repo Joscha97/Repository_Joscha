@@ -26,6 +26,8 @@ namespace Aufgabe4
 
             root.PrintTree(); 
         }
+
+        
         public class TreeNode<T>
         {
             public T Daten;
@@ -58,6 +60,23 @@ namespace Aufgabe4
                     child.PrintTree(AddTree + "*");
                 }
             }
+            public List<TreeNode<T>> Find(T searchFor, List<TreeNode<T>> result = null)
+            {
+                if (result == null)
+                {
+                    result = new List<TreeNode<T>>();
+                }
+                if (_Content.Equals(searchFor))
+                {
+                    result.Add(this);
+                }
+                foreach (var child in Children)
+                {
+                    child.Find(searchFor, result);
+                }
+                return result;
+            }
+            
         }
     }
 }
